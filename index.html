@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#181b1d">
+  <meta name="description" content="Вероятность в английском. Сравнивайте прогнозы, слушайте британское произношение и восстанавливайте фразы по памяти.">
+  <link rel="manifest" href="app.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-180.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Likely — вероятность в английском</title>
+  <script defer src="rules.js"></script>
+  <script defer src="cards.js"></script>
+  <script defer src="voices.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+<header class="mast"><div class="mast-inner">
+  <a href="#learn" class="brand" aria-label="Likely — к разбору"><img src="icons/apple-180.png" width="40" height="40" alt=""><span lang="en">Likely</span></a>
+  <nav aria-label="Режим занятия"><a href="#learn" id="learn-tab" aria-current="page">Разбор</a><a href="#practice" id="practice-tab">Тренировка</a></nav>
+  <button class="type-button" id="type-button" type="button" aria-label="Увеличить шрифт" aria-pressed="false" title="Увеличить шрифт">Аа</button>
+</div></header>
+<main id="main">
+<section id="learn-view" aria-labelledby="lesson-title">
+  <div class="feature">
+    <div class="scene">
+      <div class="scene-text">
+        <span class="overline" lang="en">Future probability <span>·</span> B1–B2</span>
+        <h1 id="lesson-title">Успеет до шести?</h1>
+        <p>Один поезд, четыре прогноза. Выберите, насколько вы уверены в его прибытии.</p>
+      </div>
+    </div>
+    <div class="comparison">
+      <div id="scale" class="scale" role="group" aria-label="Степень уверенности"></div>
+      <div class="forecast-row">
+        <div aria-live="polite" aria-atomic="true"><p class="forecast" lang="en" id="forecast-en"></p><p class="translation" id="forecast-ru"></p></div>
+        <div id="forecast-audio"></div>
+      </div>
+    </div>
+  </div>
+  <div class="section-head"><div><p class="overline" lang="en">Grammar notes</p><h2>Как построить прогноз</h2></div><span class="count">5 тем</span></div>
+  <div id="rules" class="rules"></div>
+</section>
+<section id="practice-view" hidden aria-labelledby="practice-title">
+  <div class="practice-head"><p class="overline" lang="en">Active recall <span>·</span> B1–B2</p><h1 id="practice-title">Тренировка</h1><p>Произнесите свой вариант, затем послушайте Райана и сравните.</p></div>
+  <label class="filter" for="topic-select">Тема <select id="topic-select"><option value="all">Все конструкции</option></select></label>
+  <div class="practice-card" id="practice-card"></div>
+  <p class="review-note" id="review-note"></p>
+</section>
+<noscript>Чтобы открыть интерактивный урок, включите JavaScript в браузере.</noscript>
+</main>
+<footer><div class="footer-inner"><span id="offline-status" role="status">Подготовка к работе без интернета…</span><span lang="en">Likely · British English</span></div>
+<p id="storage-status" role="status" hidden></p></footer>
+<div id="audio-status" class="toast" role="status" hidden></div>
+</body></html>
