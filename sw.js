@@ -1,6 +1,6 @@
 /* Give every published asset revision a new version, including audio or rule changes. */
 const cachePrefix = 'likely-english-offline-';
-const cacheName = cachePrefix + '20261118-1';
+const cacheName = cachePrefix + '20261118-2';
 const scope = new URL(self.registration.scope);
 
 importScripts('./voices.js');

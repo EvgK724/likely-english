@@ -1,6 +1,7 @@
 window.RULES = [
   {
     id: "adverbs",
+    tipAudio: ["I’ll probably go.", "I probably won’t go."],
     title: "Насколько я уверен?",
     pattern: "will probably / certainly / definitely + глагол",
     explanation: "Probably передаёт «скорее всего». Certainly и definitely показывают, что говорящий уверен в прогнозе. В обычном утверждении наречие идёт после will. В отрицании удобный порядок — наречие перед won’t.",
@@ -14,6 +15,7 @@ window.RULES = [
   },
   {
     id: "that",
+    tipAudio: ["It’s probable that she’ll come.", "She’s likely to come."],
     title: "Прогноз о целом событии",
     pattern: "It’s likely / unlikely / probable / certain / definite that …",
     explanation: "Начните с оценки, затем после that назовите, кто что сделает. Likely и probable означают «вероятно», unlikely — «вряд ли». Certain выражает уверенность. Definite уместно, когда решение уже окончательное.",
@@ -28,6 +30,7 @@ window.RULES = [
   },
   {
     id: "opinion",
+    tipAudio: ["I doubt she’ll come"],
     title: "Как высказать своё мнение",
     pattern: "I think / I don’t think / I doubt (that) … will …",
     explanation: "I think вводит личный прогноз. I don’t think и I doubt помогают выразить сомнение. В фразе «не думаю, что он придёт» отрицание уже содержится в don’t think. Дальше естественно сказать he’ll come.",
@@ -40,6 +43,7 @@ window.RULES = [
   },
   {
     id: "infinitive",
+    tipAudio: ["It’s likely that the parcel will arrive tomorrow.", "The parcel is likely to arrive tomorrow."],
     title: "Прогноз о человеке или предмете",
     pattern: "am / is / are + likely / unlikely / sure / certain / bound + to + глагол",
     explanation: "Назовите человека или предмет, добавьте форму be, затем оценку и действие с to. Likely означает «скорее всего», unlikely — «вряд ли». Sure, certain и bound передают сильную уверенность говорящего. Bound to часто описывает ожидаемое следствие обстоятельств.",
@@ -55,6 +59,7 @@ window.RULES = [
   },
   {
     id: "modals",
+    tipAudio: ["I might not join", "I couldn’t join yesterday"],
     title: "Один из возможных исходов",
     pattern: "may / might / could + глагол · may not / might not + глагол",
     explanation: "May, might и could передают «возможно». После них ставьте начальную форму глагола без to. Чтобы сказать «возможно, этого не произойдёт», используйте may not или might not.",

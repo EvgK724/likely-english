@@ -35,6 +35,17 @@ function write(key, value) {
 }
 const submitted = read('reviews', {});
 const reviews = submitted && typeof submitted === 'object' && !Array.isArray(submitted) ? submitted : {};
+// Keep earlier reviews readable and new marks independent across tabs.
+for (const { id } of CARDS) {
+  const saved = read('card.' + id, null);
+  if (saved) reviews[id] = saved;
+}
+window.addEventListener('storage', event => {
+  if (!event.key?.startsWith(prefix + 'card.')) return;
+  const id = event.key.slice((prefix + 'card.').length);
+  const saved = read('card.' + id, null);
+  if (saved) reviews[id] = saved;
+});
 const session = read('session', {}) || {};
 let sequence = Number(session.sequence) || 0;
 let topic = Object.hasOwn(topicLabels, session.topic) ? session.topic : 'all';
@@ -64,7 +75,7 @@ function stopSound() {
     activeButton = null;
   }
 }
-function audioButton(sentence) {
+function audioButton(sentence, inline = false) {
   const control = button('', () => {
     const same = activeButton === control;
     stopSound();
@@ -88,7 +99,23 @@ function audioButton(sentence) {
   control.setAttribute('aria-label', 'Слушать · Ryan · ' + sentence);
   control.setAttribute('aria-pressed', 'false');
   control.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 9a4.5 4.5 0 0 1 0 6m2-9a8 8 0 0 1 0 12"/></svg>';
+  if (inline) {
+    control.classList.add('inline-sound');
+    control.prepend(english(el('span', '', sentence)));
+  }
   return control;
+}
+function spokenNote(style, text, snippets = []) {
+  const note = el('p', style);
+  let cursor = 0;
+  for (const phrase of snippets) {
+    const start = text.indexOf(phrase, cursor);
+    if (start < 0) continue;
+    note.append(text.slice(cursor, start), audioButton(phrase, true));
+    cursor = start + phrase.length;
+  }
+  note.append(text.slice(cursor));
+  return note;
 }
 function showForecast(index) {
   stopSound();
@@ -121,7 +148,7 @@ function showRules() {
     const body = el('div', 'rule-body');
     body.append(el('p','pattern',rule.pattern), el('p','explanation',rule.explanation));
     for (const pair of rule.examples) body.append(example(pair.en, pair.ru));
-    body.append(el('p', 'tip', rule.tip), button('Тренировать эту тему', () => {
+    body.append(spokenNote('tip', rule.tip, rule.tipAudio), button('Тренировать эту тему', () => {
       changeTopic(rule.id);
       location.hash = 'practice';
     }, 'action'));
@@ -152,12 +179,12 @@ function changeTopic(value) {
 }
 function mark(remembered) {
   stopSound();
-  const previous = reviews[current.id];
-  sequence++;
+  const previous = read('card.' + current.id, reviews[current.id]);
+  sequence = Math.max(sequence, Number(read('session', null)?.sequence) || 0) + 1;
   const step = remembered ? Math.min(delays.length, (previous?.step || 0) + 1) : 0;
   const due = remembered ? Date.now() + day * delays[step - 1] : Date.now();
   reviews[current.id] = { step, due, after: remembered ? 0 : sequence + 2 };
-  write('reviews', reviews);
+  write('card.' + current.id, reviews[current.id]);
   current = undefined;
   renderPractice(true);
 }
@@ -166,7 +193,7 @@ function makeAnswer(c) {
   answer.id = 'model-answer'; answer.hidden = true;
   const actions = el('div', 'actions');
   actions.append(button('Ещё раз', () => mark(false)), button('Вспомнил', () => mark(true), 'action'));
-  answer.append(example(c.answer, c.ru), el('p', 'why', c.why), actions);
+  answer.append(example(c.answer, c.ru), spokenNote('why', c.why, c.whyAudio), actions);
   return answer;
 }
 function renderPractice(focus = false) {
@@ -190,7 +217,7 @@ function renderPractice(focus = false) {
     const c = current;
     const header = el('div','card-head');
     header.append(el('span','overline',typeLabels[c.kind]),el('span','topic-tag',topicLabels[c.topic][1]));
-    const split = c.prompt.indexOf('. ');
+    const split = c.prompt.lastIndexOf('. ');
     const heading = el('h2','',split < 0 ? c.prompt : c.prompt.slice(0,split + 1));
     heading.tabIndex = -1;
     box.append(header, heading);
@@ -198,7 +225,11 @@ function renderPractice(focus = false) {
       const remainder = c.prompt.slice(split + 2);
       const prompt = el('p',/^[A-Za-z]/.test(remainder) ? 'prompt-english' : 'prompt-context',remainder);
       if (prompt.className === 'prompt-english') english(prompt);
-      box.append(prompt);
+      if (c.hasPromptAudio) {
+        const line = el('div', 'source-line');
+        line.append(prompt, audioButton(remainder));
+        box.append(line);
+      } else { box.append(prompt); }
     }
     const answer = makeAnswer(c);
     const reveal = button('Показать ответ', () => {

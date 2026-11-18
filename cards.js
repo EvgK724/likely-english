@@ -8,6 +8,7 @@ window.CARDS = [
   },
   {
     id: "that-01", topic: "that", kind: "rephrase",
+    hasPromptAudio: true,
     prompt: "Начните с It's likely that. The platform will probably change.",
     answer: "It's likely that the platform will change.",
     ru: "Скорее всего, номер платформы изменится.",
@@ -43,6 +44,7 @@ window.CARDS = [
   },
   {
     id: "that-02", topic: "that", kind: "translate",
+    whyAudio: ["The neighbours might go away for the weekend."],
     prompt: "Начните с It's possible that. Возможно, соседи уедут на выходные.",
     answer: "It's possible that the neighbours will go away for the weekend.",
     ru: "Возможно, соседи уедут на выходные.",
@@ -64,6 +66,7 @@ window.CARDS = [
   },
   {
     id: "mod-02", topic: "modals", kind: "translate",
+    whyAudio: ["I may not finish the film today."],
     prompt: "Используйте might. Возможно, я не досмотрю фильм сегодня.",
     answer: "I might not finish the film today.",
     ru: "Возможно, я не досмотрю фильм сегодня.",
@@ -85,6 +88,7 @@ window.CARDS = [
   },
   {
     id: "op-03", topic: "opinion", kind: "rephrase",
+    hasPromptAudio: true,
     prompt: "Выразите сомнение с помощью I doubt. I don't think the café will have a free table.",
     answer: "I doubt the café will have a free table.",
     ru: "Сомневаюсь, что в кафе найдётся свободный столик.",
@@ -92,6 +96,7 @@ window.CARDS = [
   },
   {
     id: "inf-03", topic: "infinitive", kind: "rephrase",
+    hasPromptAudio: true,
     prompt: "Начните с Our flight и сохраните степень уверенности. It's unlikely that our flight will leave on time.",
     answer: "Our flight is unlikely to leave on time.",
     ru: "Вряд ли наш рейс отправится вовремя.",
@@ -99,6 +104,7 @@ window.CARDS = [
   },
   {
     id: "mod-03", topic: "modals", kind: "rephrase",
+    hasPromptAudio: true,
     prompt: "Передайте ту же возможность с помощью could. It's possible that the call will take an hour.",
     answer: "The call could take an hour.",
     ru: "Разговор может занять час.",
@@ -106,6 +112,8 @@ window.CARDS = [
   },
   {
     id: "adv-04", topic: "adverbs", kind: "rephrase",
+    hasPromptAudio: true,
+    whyAudio: ["I will definitely not order"],
     prompt: "Выразите уверенность через definitely won't. I'm sure I won't order that spicy soup again.",
     answer: "I definitely won't order that spicy soup again.",
     ru: "Я точно больше не закажу этот острый суп.",
@@ -148,6 +156,7 @@ window.CARDS = [
   },
   {
     id: "that-05", topic: "that", kind: "rephrase",
+    hasPromptAudio: true,
     prompt: "Начните с It's likely that и сохраните отрицание. The shop probably won't deliver our sofa this week.",
     answer: "It's likely that the shop won't deliver our sofa this week.",
     ru: "Скорее всего, магазин не доставит наш диван на этой неделе.",
@@ -169,6 +178,7 @@ window.CARDS = [
   },
   {
     id: "mod-05", topic: "modals", kind: "translate",
+    whyAudio: ["The courier might not find me at home."],
     prompt: "Скажите с may not. Возможно, курьер не застанет меня дома.",
     answer: "The courier may not find me at home.",
     ru: "Возможно, курьер не застанет меня дома.",
@@ -176,6 +186,8 @@ window.CARDS = [
   },
   {
     id: "adv-06", topic: "adverbs", kind: "rephrase",
+    hasPromptAudio: true,
+    whyAudio: ["We will definitely need our passports."],
     prompt: "Замените I'm sure конструкцией с will definitely. I'm sure we'll need our passports.",
     answer: "We'll definitely need our passports.",
     ru: "Паспорта нам точно понадобятся.",
@@ -190,6 +202,8 @@ window.CARDS = [
   },
   {
     id: "op-06", topic: "opinion", kind: "rephrase",
+    hasPromptAudio: true,
+    whyAudio: ["I doubt I'll finish", "I don't think I'll finish"],
     prompt: "Выразите то же сомнение через I don't think. I doubt I'll finish this chapter tonight.",
     answer: "I don't think I'll finish this chapter tonight.",
     ru: "Вряд ли я дочитаю эту главу сегодня вечером.",
@@ -197,6 +211,7 @@ window.CARDS = [
   },
   {
     id: "inf-06", topic: "infinitive", kind: "rephrase",
+    hasPromptAudio: true,
     prompt: "Начните с The trains. It's likely that the trains will be crowded on Friday.",
     answer: "The trains are likely to be crowded on Friday.",
     ru: "В пятницу в поездах, скорее всего, будет много людей.",
@@ -204,6 +219,8 @@ window.CARDS = [
   },
   {
     id: "mod-06", topic: "modals", kind: "rephrase",
+    hasPromptAudio: true,
+    whyAudio: ["or they might postpone it."],
     prompt: "Сохраните два возможных исхода и используйте might дважды. Perhaps the team will meet online tomorrow, or perhaps they'll postpone the meeting.",
     answer: "The team might meet online tomorrow, or they might postpone the meeting.",
     ru: "Возможно, завтра команда проведёт встречу онлайн или отложит её.",
